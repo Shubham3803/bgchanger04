@@ -27,31 +27,70 @@ import {
 
 function App(): React.JSX.Element {
  
-  const [randomBackground, setRandoBackground] = useState("#ffffff");
+  const [randomBackground, setRandoBackground] = useState(["#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff" ]);
 
   const generatecolor= ()=>{
     const hexRange = "0123456789ABCDEF";
-    let color = "#"
 
+  
 
-    for (let i = 0; i < 6; i++) {
+    const getcolor= () => {
+      let color = "#"
+
+      for (let i = 0; i < 6; i++) {
         color += hexRange[Math.floor(Math.random() * 16)]     
     }
-    setRandoBackground(color)
+    return color;
+  }
+  setRandoBackground([getcolor(),getcolor(), getcolor(), getcolor(), getcolor()])
+  
   }
 
  
 
   return (
       <>
-       <StatusBar backgroundColor={randomBackground} />
-      <View style={[styles.container, {backgroundColor:randomBackground} ]}>
+       {/* <StatusBar backgroundColor={randomBackground[0]} /> */}
+
+            
+
+      <View style={[styles.container, {backgroundColor: randomBackground[4]} ]}>
+
+            <View style={styles.one}>
+                <View style={[styles.rectangle, {backgroundColor:randomBackground [0]}]}>
+                  <Text style={styles.actionbtntext}>shubham</Text>
+                </View>
+
+                <View style={[styles.rectangle, {backgroundColor:randomBackground [1]}]}>
+                  <Text style={styles.actionbtntext}>shubham</Text>
+                </View>
+            </View>
+
+            
+
         <TouchableOpacity onPress={generatecolor}>
+
           <View style={styles.actionbutton}>
             <Text style={styles.actionbtntext}>Press Me</Text>
           </View>
+
         </TouchableOpacity>
+
+            <View style={styles.one}>
+                <View style={[styles.rectangle, {backgroundColor:randomBackground[2]}]}>
+                  <Text style={styles.actionbtntext}>shubham</Text>
+                </View>
+
+                <View style={[styles.rectangle, {backgroundColor:randomBackground[3]}]}>
+                  <Text style={styles.actionbtntext}>shubham</Text>
+                </View>
+            </View>
+
       </View>
+
+          
+
+
       </>
   );
 }
@@ -59,8 +98,17 @@ function App(): React.JSX.Element {
 const styles = StyleSheet.create({
   container:{
     flex:1,
+    flexDirection:"column",
     alignItems:"center",
-    justifyContent:"center"
+    justifyContent:"center",
+    
+  },
+  one:{
+    flex:1,
+    flexDirection:"row",
+    gap:10,
+    alignItems:"center",
+    justifyContent:"center",
   },
   actionbutton:{
     borderRadius:12,
@@ -73,6 +121,14 @@ const styles = StyleSheet.create({
     fontSize:24,
     color:"#fff",
     textTransform:"uppercase"
+  },
+  rectangle:{
+    paddingTop:10,
+    paddingBottom:10,
+    paddingHorizontal:15,
+    backgroundColor:"#fff",
+    color:"#fff",
+    borderRadius:12
   }
 });
 
